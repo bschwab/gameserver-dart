@@ -65,9 +65,11 @@ void main() {
 
       String jsonData = JSON.encode(mapData);
 
-      // Iterate through all Games
-      var keys = GameMap.keys;
-      GameMap.forEach((key,value) => value.sendPort.send(jsonData));
+      // Iterate through all Games, if the Map has been created
+      if (GameMap.length > 0) {
+        var keys = GameMap.keys;
+        GameMap.forEach((key,value) => value.sendPort.send(jsonData));
+      }
     }
     else {
       timer.cancel(); // stop the timer running
